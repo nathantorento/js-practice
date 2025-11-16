@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=display-width, initial-scale=1">
+    <meta name="description" content="Event Listener Practice">
+    <title>Event Listener Practice</title>
+</head>
+<body>
+    <h1>Event Listener Practice</h1>
+
+    <button id="myButton" onclick="handleButtonClick()">No event listener</button>
+    <br><br>
+
+    <button id="myButton2">With event listener</button>
+    <br><br>
+
+    <button id="clickButton">Click Me!</button>
+    <br><br>
+
+    <div id="moveArea" style="width: 200px; height: 200px; background-color: lightcoral;"></div>
+    <br><br>
+
+    <label for="keyInput">Key Input</label>
+    <input type="text" id="keyInput">
+    <br><br>
+
+    <label for="pressInput">Press Input</label>
+    <input type="text" id="pressInput">
+    <br><br>
+
+    <form id="myForm">
+        <label for="textInput">Text Input</label>
+        <input type="text" id="textInput">
+        <input type="submit" value="Submit">
+    </form>
+    <br><br>
+
+    <input type="text" id="textInput" placeholder="Click here">
+    <br><br>
+
+    <div style="height: 2000px; background-color: lightblue;">
+        Scroll down
+    </div>
+
+    <script>
+        function handleButtonClick() {
+            alert("Button clicked!");
+        }
+
+        const button = document.getElementById("myButton2");
+        button.addEventListener("click", handleButtonClick)
+
+        document.getElementById("clickButton").addEventListener("click", function() {
+            alert("Button clicked again!");
+        });
+
+        const moveArea = document.getElementById("moveArea");
+        moveArea.addEventListener("mousedown", function(event) {
+            if (event.target === moveArea) {
+                alert(`Mouse coordinates - X: ${event.clientX}, Y: ${event.clientY}`);
+            }
+        });
+
+        const keyInput = document.getElementById("keyInput"); // may not result in character input
+        keyInput.addEventListener("keydown", function() {
+            alert("Key pressed down!");
+        })
+        keyInput.addEventListener("keyup", function() {
+            alert("Key released!");
+        })
+
+        const pressInput = document.getElementById("pressInput"); // always results in character input
+        pressInput.addEventListener("keypress", function() {
+            alert("Key pressed!");
+        });
+
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Form submitted!");
+        });
+
+        const textInput = document.getElementById('textInput');
+        textInput.addEventListener('focus', function() {
+            console.log('Input focused');
+        });
+        textInput.addEventListener('blur', function() {
+            console.log('Input blurred');
+        });
+
+        window.addEventListener('scroll', function() {
+            console.log('Document scrolled');
+        });
+
+        window.addEventListener('load', function() {
+            console.log('Page and all resources loaded');
+        });
+
+    </script>
+</body>
+</html>
